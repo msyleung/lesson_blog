@@ -1,0 +1,9 @@
+.container
+	%h2= @post.name
+	.main
+		= @post.body
+		%br
+		= link_to 'Edit', edit_post_path(@post)
+		= link_to 'Destroy', @post, method: :delete
+		%br
+		= link_to 'Show All', posts_path

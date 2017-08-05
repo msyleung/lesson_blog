@@ -1,3 +1,31 @@
-// Place all the styles related to the Posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+html {
+	overflow-y: scroll;
+}
+
+body {
+	background-image: url("longcat.png");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: right bottom;
+}
+
+.container {
+	position: relative;
+	width: 85%;
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+.main {
+margin: auto;
+border: 2px solid #FACCFF;
+border-radius: 8px;
+background-color: #FACCFF;
+background: rgba(250, 204, 255, 0.5);
+padding: 10px;
+margin-top: 20px;
+max-height: 800px;
+overflow-y: scroll;
+}

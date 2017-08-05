@@ -1,50 +1,53 @@
 class PostsController < ApplicationController
-	before_action :find, only [:edit, :update, :show, :delete]
+	before_action :find_post, only: [:edit, :update, :show, :delete]
 
-def index
-	@posts = Post.all
-end
-
-def new
-	@post = Post.new
-end
-
-def create
-	@post = Post.new
-	if @post.save(post_params)
-		flash[:notice] = "Successfully created post!"
-		redirect_to post_path(@post)
-	else
-		flash[:alert] = "Error creating new post!"
-		render :new
+	def index
+		@posts = Post.all
 	end
-end
 
-def show
-end
-
-def update
-	if @post.update_attributes(post_params)
-		flash[:notice] = "Successfully updated!"
-		redirect_to post_path(@posts)
-	else
-		flash[:alert] = "Error"
-		render :edit
+	def new
+		@post = Post.new
 	end
-end
 
-def edit
-end
+	def create
+		@post = Post.new(post_params)
+		if @post.save
+			redirect_to @post
+		else
+			render :new
+		end
+	end
 
-def destroy
-end
+	def show
+		find_post
+	end
 
-def find
-	@post = Post.find(params[:id])
-end
+	def update
+		if @post.update_attributes(post_params)
+			redirect_to @post
+		else
+			render :edit
+		end
+	end
 
-def post_params
-	params.require(:post).permit(:name, :desc)
-end
+	def edit
+		find_post
+	end
+
+	def destroy
+		find_post
+		@post.destroy
+		redirect_to posts_path
+	end
+
+	private
+
+		def find_post
+			@post = Post.find(params[:id])
+		end
+
+		def post_params
+			params.require(:post).permit(:name, :body)
+		end
 
 end

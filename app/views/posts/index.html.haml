@@ -1,1 +1,12 @@
-coucou
+.container
+	.h2 Meo's test_blog
+	.main
+		= link_to "Create a new blog post", new_post_path
+		- @posts.reverse.each do |post|
+			%h2
+				= post.name
+			%div
+				= raw(post.body).truncate(358)
+			%br
+			= link_to "Read More", post_path(post)
+			%br

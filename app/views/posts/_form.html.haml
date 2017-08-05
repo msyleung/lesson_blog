@@ -1,0 +1,10 @@
+.main
+	= form_for(@post) do |f|
+		.field
+			= f.label :name
+			= f.text_field :name
+		.field
+			= f.label :body
+			= f.text_field :body
+		%div
+		= f.submit
